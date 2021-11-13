@@ -23,6 +23,37 @@ data.forEach(function(UFODetails){
 });
 });
 
-
 // Use a date form in your HTML document and write JavaScript code that will listen for events and 
 //search through the date/time column to find rows that match user input.
+
+// assign the data from data.js to a descriptive variable UFOData
+var UFOData = data;
+// select the button, the filter table button id is "filter-btn"
+var button = d3.select("#filter-btn")
+
+// select the form (where we input the date)
+var form = d3.select("#form");
+
+// create event handlers
+button.on ("click", runEnter);
+form.on("submit",runEnter);
+
+// complete the event handlers function for the form
+function runEnter() {
+
+// Prevent the page from refreshing
+  d3.event.preventDefault();
+
+ // Select the input element and get the raw HTML node
+ var inputElement = d3.select("#datetime");
+
+// Get the value property of the input element
+var inputValue = inputElement.property("value");
+
+// console.log(inputValue);
+// console.log(UFOData);
+
+var filterUFOdate = UFOData.filter(UFOData => UFOData.datetime === inputValue);
+
+console.log(filterUFOdate);
+};
